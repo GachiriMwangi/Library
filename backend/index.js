@@ -28,9 +28,4 @@ app.listen(PORT, () =>  {
     console.log(error)
 })
 
-app.get("/", (req, res) => {  
-    return res.status(200).send("Hello There!")
-
-})
-
  
