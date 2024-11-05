@@ -2,7 +2,6 @@ import { Router } from "express";
 import  Book  from "../models/bookModel.js"
 const router = Router()
 
-//Get all books 
 router.get("/books", async(req, res) => {
    try{
     const allBooks = await Book.find({})
@@ -51,6 +50,7 @@ router.get("/books/:id", async(req, res) => {
     }
  })
 
+ //Create a book
 router.post("/books", async (req, res) => {
 try{
 if(!req.body.title || !req.body.author || !req.body.publishYear){
