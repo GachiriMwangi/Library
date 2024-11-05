@@ -13,7 +13,7 @@ const Home = () => {
     setLoading(true)
     axios.get('http://localhost:4000/books')
     .then((response) => {      
-      setBooks(response.data) 
+      setBooks(response.data.data) 
       setLoading(false)
     })
     .catch((error) => {

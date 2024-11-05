@@ -18,9 +18,9 @@ const EditBook = () => {
   useEffect(() => {
     axios.get(`http://localhost:4000/books/${id}`)
     .then((response) => {
-      setTitle(response.data.title)
-      setAuthor(response.data.author)
-      setPublishYear(response.data.publishYear)
+      setTitle(response.data.data.title)
+      setAuthor(response.data.data.author)
+      setPublishYear(response.data.data.publishYear)
       setLoading(false)
     }) 
     .catch((error) => {

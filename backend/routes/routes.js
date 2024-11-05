@@ -7,10 +7,15 @@ router.get("/books", async(req, res) => {
    try{
     const allBooks = await Book.find({})
     if(allBooks){
-        return res.status(200).json(allBooks)
+        return res.status(200).json({
+            success: true, 
+            message: 'All Books Retrieved Successfully',
+            data: allBooks
+        })
     }
     else{
-        return res.status(500).json({
+        return res.status(404).json({
+            success: false,            
             msg: "No book found"
         })
     }
@@ -26,10 +31,17 @@ router.get("/books/:id", async(req, res) => {
      const id = req.params.id
      const book = await Book.findById(id)
      if(book){
-         return res.status(200).json(book)
+         return res.status(200).json(
+            {
+                success: true, 
+                message: 'Book Retrieved Successfully', 
+                data: book
+            }
+         )
      }
      else{
-         return res.status(500).json({
+         return res.status(404).json({
+            success: false,
              msg: "Book not found"
          })
      }
@@ -54,7 +66,11 @@ const newBook = {
 
 const book = await Book.create(newBook)
 
-return res.status(201).send(book)
+return res.status(201).json({
+    success: true, 
+    message: "Book Created Successfully", 
+    data: book
+})
 
 }
 catch(error){
@@ -73,7 +89,11 @@ router.put("/books/:id", async (req, res) => {
         })
     }
     const updatedBook = await Book.findByIdAndUpdate(id, req.body)   
-    return res.status(200).send(updatedBook)
+    return res.status(200).json({
+        success: true, 
+        message: "Book Updated Successfully", 
+        data: updatedBook
+    })
     }
     catch(error){
     console.log(error)
@@ -90,17 +110,20 @@ router.put("/books/:id", async (req, res) => {
             const book = await Book.findByIdAndDelete(id)    
             if(!book){
                 return res.status(404).json({
-                    Msg: "Book Not Found."
+                    success: false,
+                    message: "Book Not Found."
                 })
             }
-              return res.status(204).json({
-                Msg: "Book deleted successfully."
+              return res.status(200).json({
+                success: true, 
+                message: 'Book Deleted Successfully'
               })            
         }
         catch(error){
             console.log(error) 
             res.status(500).json({
-                Msg: "Internal Server error."
+                success: false,
+                message: "Internal Server error."
             })
         }
     })
