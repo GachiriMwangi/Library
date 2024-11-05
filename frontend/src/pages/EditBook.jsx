@@ -16,7 +16,7 @@ const EditBook = () => {
   const { id } = useParams()
   // Get the Book 
   useEffect(() => {
-    axios.get(`http://localhost:5000/books/${id}`)
+    axios.get(`http://localhost:4000/books/${id}`)
     .then((response) => {
       setTitle(response.data.title)
       setAuthor(response.data.author)
@@ -36,7 +36,7 @@ const EditBook = () => {
       publishYear
     }
     setLoading(true)
-    await axios.put(`http://localhost:5000/books/${id}`, data)
+    await axios.put(`http://localhost:4000/books/${id}`, data)
     .then(() => {
       setLoading(false) 
       enqueueSnackbar("Book edited successfully", {

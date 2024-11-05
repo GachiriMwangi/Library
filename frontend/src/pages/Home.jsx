@@ -11,7 +11,7 @@ const Home = () => {
   const [showType, setShowType] = useState('table')
   useEffect(() => {
     setLoading(true)
-    axios.get('http://localhost:5000/books')
+    axios.get('http://localhost:4000/books')
     .then((response) => {      
       setBooks(response.data) 
       setLoading(false)

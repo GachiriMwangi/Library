@@ -11,7 +11,7 @@ const navigate = useNavigate()
 const { enqueueSnackbar } = useSnackbar()
 const {id} = useParams()
 const handleDelete = () => {
-  axios.delete(`http://localhost:5000/books/${id}`)
+  axios.delete(`http://localhost:4000/books/${id}`)
   .then(() => {
     enqueueSnackbar("Book deleted successfully", {
       variant: 'success'
